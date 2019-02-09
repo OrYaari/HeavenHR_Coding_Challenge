@@ -16,7 +16,7 @@ public class ApplicationsController {
 
     @PostMapping
     public void createOrUpdateApplication(@RequestBody ApplicationModel applicationModel) {
-
+        applicationsService.applyForOffer(applicationModel);
     }
 
     @GetMapping

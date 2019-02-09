@@ -1,5 +1,6 @@
 package com.heavenhr.entity;
 
+import com.heavenhr.model.ApplicationModel;
 import com.heavenhr.model.ApplicationStatus;
 
 import javax.persistence.*;
@@ -7,28 +8,27 @@ import javax.persistence.*;
 @Entity
 public class Application {
 
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    private Long id;
-
-    @ManyToOne
-    private Offer offer;
-    private String candidateEmail;
+    @EmbeddedId
+    private ApplicationId applicationId;
     private String resume;
+
+    @Enumerated(EnumType.STRING)
     private ApplicationStatus applicationStatus;
 
     protected Application() {}
 
-    public Long getId() {
-        return id;
+    public Application(ApplicationModel applicationModel) {
+        this.applicationId = new ApplicationId(applicationModel.getOffer(), applicationModel.getCandidateEmail());
+        this.resume = applicationModel.getResume();
+        this.applicationStatus = applicationModel.getApplicationStatus();
     }
 
-    public Offer getOffer() {
-        return offer;
+    public String getOffer() {
+        return applicationId.getOffer();
     }
 
     public String getCandidateEmail() {
-        return candidateEmail;
+        return applicationId.getCandidateEmail();
     }
 
     public String getResume() {

@@ -6,27 +6,56 @@ import com.heavenhr.entity.Application;
 @JsonAutoDetect
 public class ApplicationModel {
 
-    private Long id;
-    private OfferModel offerModel;
+    private String offer;
     private String candidateEmail;
     private String resume;
-    private ApplicationStatus applicationStatus;
+    private ApplicationStatus applicationStatus = ApplicationStatus.APPLIED;
 
     protected ApplicationModel() {}
 
-    public ApplicationModel(Long id, OfferModel offerModel, String candidateEmail, String resume, ApplicationStatus applicationStatus) {
-        this.id = id;
-        this.offerModel = offerModel;
+    public ApplicationModel(String offer, String candidateEmail, String resume, ApplicationStatus applicationStatus) {
+        this.offer = offer;
         this.candidateEmail = candidateEmail;
         this.resume = resume;
         this.applicationStatus = applicationStatus;
     }
 
     public ApplicationModel(Application application) {
-        this(application.getId(),
-                new OfferModel(application.getOffer()),
-                application.getCandidateEmail(),
-                application.getResume(),
-                application.getApplicationStatus());
+        this(application.getOffer(),
+             application.getCandidateEmail(),
+             application.getResume(),
+             application.getApplicationStatus());
+    }
+
+    public String getOffer() {
+        return offer;
+    }
+
+    public void setOffer(String offer) {
+        this.offer = offer;
+    }
+
+    public String getCandidateEmail() {
+        return candidateEmail;
+    }
+
+    public void setCandidateEmail(String candidateEmail) {
+        this.candidateEmail = candidateEmail;
+    }
+
+    public String getResume() {
+        return resume;
+    }
+
+    public void setResume(String resume) {
+        this.resume = resume;
+    }
+
+    public ApplicationStatus getApplicationStatus() {
+        return applicationStatus;
+    }
+
+    public void setApplicationStatus(ApplicationStatus applicationStatus) {
+        this.applicationStatus = applicationStatus;
     }
 }

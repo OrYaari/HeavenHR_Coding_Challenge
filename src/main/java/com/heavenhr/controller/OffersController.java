@@ -1,14 +1,14 @@
 package com.heavenhr.controller;
 
-import com.heavenhr.model.Offer;
+import com.heavenhr.model.OfferModel;
 import com.heavenhr.service.OffersService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Optional;
 
-@Controller
+@RestController
 @RequestMapping("/api/v1/heavenhr/offers")
 public class OffersController {
 
@@ -16,17 +16,20 @@ public class OffersController {
     private OffersService offersService;
 
     @GetMapping(value = "/{jobTitle}", produces = "application/json")
-    public Offer getOffer(@RequestParam String jobTitle) {
-        return null;
+    @ResponseBody
+    public OfferModel getOffer(@PathVariable String jobTitle) {
+        Optional<OfferModel> offer = offersService.findOffer(jobTitle);
+        return offer.orElse(null);
     }
 
     @PostMapping
-    public void createOrUpdateOffer(@RequestBody Offer offer) {
-
+    public void createOrUpdateOffer(@RequestBody OfferModel offerModel) {
+        offersService.addOffer(offerModel);
     }
 
     @GetMapping
-    public List<Offer> getOffers() {
-        return null;
+    @ResponseBody
+    public List<OfferModel> getOffers() {
+        return offersService.getOffers();
     }
 }

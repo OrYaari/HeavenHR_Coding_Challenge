@@ -1,15 +1,13 @@
 package com.heavenhr.controller;
 
-import com.heavenhr.model.Application;
-import com.heavenhr.model.Offer;
+import com.heavenhr.model.ApplicationModel;
 import com.heavenhr.service.ApplicationsService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
-@Controller
+@RestController
 @RequestMapping("/api/v1/heavenhr/applications")
 public class ApplicationsController {
 
@@ -17,12 +15,12 @@ public class ApplicationsController {
     private ApplicationsService applicationsService;
 
     @PostMapping
-    public void createOrUpdateApplication(@RequestBody Application application) {
+    public void createOrUpdateApplication(@RequestBody ApplicationModel applicationModel) {
 
     }
 
     @GetMapping
-    public List<Application> getApplications() {
-        return null;
+    public List<ApplicationModel> getApplications() {
+        return applicationsService.getApplications();
     }
 }

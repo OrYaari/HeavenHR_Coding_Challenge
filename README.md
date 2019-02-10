@@ -22,6 +22,16 @@ Using Spring and h2 (embedded DB)  I created the backend for this challenge.
 
 The offer number of applications is calculated when selected from the DB.
 
+## Starting project
+
+There are two options: 
+1. Run Main.java from an your IDE
+2. Run maven package and run the command from the target folder: ``java -jar HeavenHR_Coding_Challenge-1.0-SNAPSHOT.jar``
+
+When you run the project it will run on your `localhost` on port `8080`.
+
+To access the DB go to ```http://localhost:8080/h2-console```
+
 ## APIs
 
 There are 6 API calls that we can make:

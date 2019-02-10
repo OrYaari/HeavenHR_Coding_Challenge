@@ -16,11 +16,13 @@ public class ApplicationsController {
     private ApplicationsService applicationsService;
 
     @PostMapping
-    public void createOrUpdateApplication(@RequestBody ApplicationModel applicationModel) {
-        applicationsService.applyForOffer(applicationModel);
+    @ResponseBody
+    public String createOrUpdateApplication(@RequestBody ApplicationModel applicationModel) {
+        return applicationsService.applyForOffer(applicationModel);
     }
 
     @GetMapping
+    @ResponseBody
     public List<ApplicationModel> getApplications(@RequestParam(value = "offer", required = false) String offer,
                                                   @RequestParam(value = "email", required = false) String email,
                                                   @RequestParam(value = "applicationStatus", required = false) ApplicationStatus applicationStatus) {

@@ -1,6 +1,7 @@
 package com.heavenhr.service;
 
 import com.heavenhr.entity.Application;
+import com.heavenhr.entity.ApplicationId;
 import com.heavenhr.entity.Offer;
 import com.heavenhr.model.ApplicationModel;
 import com.heavenhr.model.ApplicationStatus;
@@ -22,11 +23,18 @@ public class ApplicationsService {
     @Autowired
     private OffersRepository offersRepository;
 
-    public void applyForOffer(ApplicationModel applicationModel) {
+    public String applyForOffer(ApplicationModel applicationModel) {
         Optional<Offer> offer = offersRepository.findById(applicationModel.getOffer());
 
         if (offer.isPresent()) {
+            if (applicationsRepository.findById(new ApplicationId(applicationModel.getOffer(), applicationModel.getCandidateEmail())).isPresent()) {
+                return "Application already applied";
+            }
             applicationsRepository.save(new Application(applicationModel));
+
+            return "Candidate applied successfully";
+        } else {
+            return "There is no such offer";
         }
     }
 

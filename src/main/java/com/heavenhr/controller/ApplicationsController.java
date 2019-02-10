@@ -18,7 +18,7 @@ public class ApplicationsController {
 
     @PostMapping
     @ResponseBody
-    public String createOrUpdateApplication(@RequestBody ApplicationModel applicationModel) {
+    public String apply(@RequestBody ApplicationModel applicationModel) {
         return applicationsService.applyForOffer(applicationModel);
     }
 

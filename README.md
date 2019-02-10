@@ -36,6 +36,7 @@ There are 6 API calls that we can make:
 Should return a list of all job offers.
 
 3. Get a single job - a GET call to the URI ``/api/v1/heavenhr/offers/{job_title}`` with `{job_title}` being the offer job title.
+If the offer doesn't exists return http not found
 
 4. Apply for an application - a POST call to the URI ``/api/v1/heavenhr/applications`` with body like 
 ``{

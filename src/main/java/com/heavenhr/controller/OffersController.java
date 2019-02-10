@@ -3,6 +3,8 @@ package com.heavenhr.controller;
 import com.heavenhr.model.OfferModel;
 import com.heavenhr.service.OffersService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -16,10 +18,13 @@ public class OffersController {
     private OffersService offersService;
 
     @GetMapping(value = "/{jobTitle}", produces = "application/json")
-    @ResponseBody
-    public OfferModel getOffer(@PathVariable String jobTitle) {
+    public ResponseEntity<OfferModel> getOffer(@PathVariable String jobTitle) {
         Optional<OfferModel> offer = offersService.findOffer(jobTitle);
-        return offer.orElse(null);
+
+        if (offer.isPresent()) {
+            return ResponseEntity.ok(offer.get());
+        }
+        return new ResponseEntity<>(HttpStatus.NOT_FOUND);
     }
 
     @PostMapping

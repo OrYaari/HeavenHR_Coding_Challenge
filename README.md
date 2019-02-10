@@ -20,6 +20,10 @@ The process requires two types of objects: job offers and applications from cand
 
 Using Spring and h2 (embedded DB)  I created the backend for this challenge.
 
+The offer number of applications is calculated when selected from the DB.
+
+## APIs
+
 There are 6 API calls that we can make:
 
 1. Create a job offer - a POST call to the URI ``/api/v1/heavenhr/offers`` with the body:
@@ -51,3 +55,7 @@ Should return a list of all job offers.
      }``
      The response is a message if the application progress was successful based on the new application status. 
  
+ ## Application progression explanation 
+ * Application candidate cannot be "progressed" to the same status.
+ * Candidate cannot move back a status.
+ * REJECTED and HIRED are the final stages for an application.

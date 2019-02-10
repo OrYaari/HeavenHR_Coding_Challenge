@@ -2,6 +2,7 @@ package com.heavenhr.controller;
 
 import com.heavenhr.model.ApplicationModel;
 import com.heavenhr.model.ApplicationStatus;
+import com.heavenhr.model.ProgressApplication;
 import com.heavenhr.service.ApplicationsService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
@@ -27,5 +28,11 @@ public class ApplicationsController {
                                                   @RequestParam(value = "email", required = false) String email,
                                                   @RequestParam(value = "applicationStatus", required = false) ApplicationStatus applicationStatus) {
         return applicationsService.getApplications(offer, email, applicationStatus);
+    }
+
+    @PostMapping(value = "/progress", produces = "application/json")
+    @ResponseBody
+    public String progressApplication(@RequestBody ProgressApplication progressApplication) {
+        return applicationsService.progressApplication(progressApplication);
     }
 }

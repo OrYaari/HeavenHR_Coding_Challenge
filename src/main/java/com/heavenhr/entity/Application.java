@@ -44,4 +44,8 @@ public class Application {
     public ApplicationStatus getApplicationStatus() {
         return applicationStatus;
     }
+
+    public void setApplicationStatus(ApplicationStatus applicationStatus) {
+        this.applicationStatus = applicationStatus;
+    }
 }

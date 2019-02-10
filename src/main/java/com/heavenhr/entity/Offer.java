@@ -2,11 +2,8 @@ package com.heavenhr.entity;
 
 import com.heavenhr.model.OfferModel;
 import org.hibernate.annotations.Formula;
-import org.hibernate.annotations.Generated;
-import org.hibernate.annotations.GenerationTime;
 
 import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import java.time.LocalDate;
 import java.util.Objects;

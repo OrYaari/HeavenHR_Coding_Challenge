@@ -17,6 +17,12 @@ public class Application {
 
     protected Application() {}
 
+    public Application(ApplicationId applicationId, String resume, ApplicationStatus applicationStatus) {
+        this.applicationId = applicationId;
+        this.resume = resume;
+        this.applicationStatus = applicationStatus;
+    }
+
     public Application(ApplicationModel applicationModel) {
         this.applicationId = new ApplicationId(applicationModel.getOffer(), applicationModel.getCandidateEmail());
         this.resume = applicationModel.getResume();

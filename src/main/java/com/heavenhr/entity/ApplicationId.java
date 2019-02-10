@@ -1,8 +1,6 @@
 package com.heavenhr.entity;
 
 import javax.persistence.Embeddable;
-import javax.persistence.JoinColumn;
-import javax.persistence.ManyToOne;
 import javax.validation.constraints.NotNull;
 import java.io.Serializable;
 import java.util.Objects;
